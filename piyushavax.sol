@@ -53,7 +53,7 @@ contract DegenGamingToken is IERC20 {
     }
 
     function redeem(uint256 amount, uint256 prizeSelection) external returns (bool) {
-        require(_balances[msg.sender] >= amount, "Insufficient balance to redeem");
+        require(_balances[msg.sender] >= amount, "not much balance");
         _burn(msg.sender, amount);
         string memory item = getItemFromPrizeSelection(prizeSelection);
         emit RedemptionSuccessful(msg.sender, amount, item);
@@ -63,9 +63,9 @@ contract DegenGamingToken is IERC20 {
 
     function getItemFromPrizeSelection(uint256 prizeSelection) private pure returns (string memory) {
         if (prizeSelection == 1) {
-            return "Sword of Power";
+            return "Sword";
         } else if (prizeSelection == 2) {
-            return "Magic Shield";
+            return "Magic";
         } else {
             return "Unknown Item";
         }
